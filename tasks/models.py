@@ -17,6 +17,8 @@ class Task(models.Model):
     updated_date = models.DateTimeField(auto_now_add=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks', on_delete=models.CASCADE)
 
+    class Meta:
+        ordering = ['created_date']
 
 class UserManager(BaseUserManager):
     """
