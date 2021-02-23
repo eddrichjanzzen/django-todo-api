@@ -8,8 +8,12 @@ class Task(models.Model):
     title = models.TextField()
     description = models.TextField()
     completed = models.BooleanField(default=False)
+    deadline = models.DateTimeField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now_add=True)
+    owner = models.ForeignKey('auth.User', related_name='tasks', on_delete=models.CASCADE)
 
     class Meta:
         ordering = ['created_date']
+
+
