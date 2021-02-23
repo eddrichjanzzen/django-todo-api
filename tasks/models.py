@@ -20,6 +20,10 @@ class Task(models.Model):
     class Meta:
         ordering = ['created_date']
 
+
+    def save(self, *args, **kwargs):
+        super(Task, self).save(*args, **kwargs)
+
 class UserManager(BaseUserManager):
     """
     Define a model manager for User model with no username field.
