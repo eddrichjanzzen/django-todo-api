@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'tasks.apps.TasksConfig'
+    'tasks.apps.TasksConfig',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +71,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'todoApi.wsgi.application'
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
