@@ -4,7 +4,6 @@ from tasks.models import Task
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        owner = serializers.ReadOnlyField(source='owner.email')
         fields = [
             'id', 
             'title', 
@@ -12,6 +11,6 @@ class TaskSerializer(serializers.ModelSerializer):
             'deadline', 
             'created_date', 
             'updated_date', 
-            'completed', 
-            'owner']
+            'completed'
+        ]
 
