@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from rest_framework_simplejwt.tokens import RefreshToken
+from cloudinary.models import CloudinaryField
 
 # Create your models here.
 
@@ -76,6 +77,7 @@ class User(AbstractUser):
     is_staff = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now_add=True)
+    avatar = CloudinaryField('avatar')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
