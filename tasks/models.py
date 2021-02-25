@@ -15,7 +15,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     deadline = models.DateTimeField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks', on_delete=models.CASCADE)
 
     class Meta:
@@ -76,8 +76,8 @@ class User(AbstractUser):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     created_date = models.DateTimeField(auto_now_add=True)
-    updated_date = models.DateTimeField(auto_now_add=True)
-    avatar = CloudinaryField('avatar')
+    updated_date = models.DateTimeField(auto_now=True)
+    avatar = models.TextField(blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
@@ -87,7 +87,6 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
     
-
     def tokens(self):
         refresh = RefreshToken.for_user(self)
 
@@ -95,3 +94,8 @@ class User(AbstractUser):
             'refresh': str(refresh),
             'access': str(refresh.access_token)
         }
+
+    def cloudinary_public_id(self):
+        hashval = self.avatar.split('/')[-1].split('.')[0]
+        public_id =f"todo_avatars/{hashval}"
+        return public_id
