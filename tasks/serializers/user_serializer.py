@@ -11,13 +11,19 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'display_name', 'created_date', 'updated_date']
+        fields = ['id', 'email', 'display_name', 'avatar', 'created_date', 'updated_date']
 
 class UserUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
         fields = ['display_name']
+
+class UserUploadAvatarSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['avatar']
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
