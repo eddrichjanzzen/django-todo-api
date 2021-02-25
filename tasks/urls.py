@@ -9,6 +9,7 @@ urlpatterns = [
     path('user', user_view.UserList.as_view(), name='user-list'),
     path('user/signup', user_view.UserSignUp.as_view(), name='user-signup'),
     path('user/login', user_view.UserLogin.as_view(), name='user-login'),
-    path('user/me', user_view.UserGetProfileDetails.as_view(), name='user-me'),
-    path('user/update/me', user_view.UserUpdateProfileDetails.as_view(), name='user-update-me'),
+    path('user/me', user_view.UserGetProfileDetail.as_view(), name='user-me'),
+    path('user/me/update', user_view.UserUpdateProfileDetail.as_view(), name='user-me-update'),
+    path('user/me/avatar', user_view.UploadView.as_view(), name='user-me-avatar'),
 ]
