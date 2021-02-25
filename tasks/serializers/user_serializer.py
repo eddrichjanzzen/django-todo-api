@@ -8,11 +8,16 @@ from datetime import timedelta
 User = get_user_model()
 
 class UserSerializer(serializers.ModelSerializer):
-    tasks = serializers.PrimaryKeyRelatedField(many=True, queryset=Task.objects.all())
 
     class Meta:
         model = User
-        fields = ['id', 'email', 'display_name']
+        fields = ['id', 'email', 'display_name', 'created_date', 'updated_date']
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = ['display_name']
 
 
 class UserSignUpSerializer(serializers.ModelSerializer):
@@ -45,20 +50,17 @@ class UserSignUpSerializer(serializers.ModelSerializer):
 
 class UserLoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255)
-    display_name = serializers.CharField(read_only=True)
     password = serializers.CharField(max_length=128, write_only=True)
-    tokens = serializers.CharField(max_length=128, write_only=True)
+    display_name = serializers.CharField(read_only=True)
+    tokens = serializers.DictField(read_only=True)
     
     class Meta: 
         model = User
-        fields = ['id', 'email', 'display_name', 'password', 'tokens']
+        fields = ['id', 'email', 'display_name', 'tokens', 'password']
 
     def validate(self, data):
         email = data.get('email', None)
         password = data.get('password', None)
-        
-        print(email)
-        print(password)
 
         user = authenticate(email=email, password=password)
         
