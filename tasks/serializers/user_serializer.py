@@ -63,6 +63,12 @@ class UserLoginSerializer(serializers.ModelSerializer):
     class Meta: 
         model = User
         fields = ['id', 'email', 'display_name', 'tokens', 'password']
+        extra_kwargs = {
+            'password': {
+                'write_only': True
+            }
+        }
+
 
     def validate(self, data):
         email = data.get('email', None)
