@@ -91,6 +91,20 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'rest_framework.schemas.coreapi.AutoSchema'
 }
 
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'basic': {
+            'type': 'basic'
+        }
+    },
+    'LOGIN_URL': '/'
+}
+
+
+REDOC_SETTINGS = {
+   'LAZY_RENDERING': False,
+}
+
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
