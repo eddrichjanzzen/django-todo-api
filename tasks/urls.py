@@ -5,7 +5,7 @@ from django.conf.urls import url
 urlpatterns = [
     path('task', task_view.TaskList.as_view(), name='task-list'),
     # accept match any regEx after 'task/'
-    url(r'^task\/(?P<pk>.+)', task_view.TaskDetail.as_view()),
+    url(r'^task\/(?P<pk>.+)$', task_view.TaskDetail.as_view()),
     path('user', user_view.UserList.as_view(), name='user-list'),
     path('user/signup', user_view.UserSignUp.as_view(), name='user-signup'),
     path('user/login', user_view.UserLogin.as_view(), name='user-login'),
