@@ -33,20 +33,8 @@ class UserLogin(generics.GenericAPIView):
 
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-class UserGetProfileDetail(generics.RetrieveAPIView):
+class UserMeDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = user_serializer.UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
-
-    def get_queryset(self):
-        return User.objects.filter(id=self.request.user.id)
-    
-    def get_object(self):
-        queryset = self.get_queryset()
-        obj = get_object_or_404(queryset, id=self.request.user.id)
-        return obj
-
-class UserUpdateProfileDetail(generics.UpdateAPIView):
-    serializer_class = user_serializer.UserUpdateSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
@@ -70,6 +58,17 @@ class UserUpdateProfileDetail(generics.UpdateAPIView):
         }
 
         return Response(response, status=status.HTTP_200_OK)
+
+    def destroy(self, request, *args, **kwargs):
+        
+        instance = self.get_object()
+        self.perform_destroy(instance)        
+
+        response = {
+            'success': True
+        }
+
+        return Response(response, status=status.HTTP_204_NO_CONTENT)
 
 class UserUploadDeleteAvatar(generics.GenericAPIView):
     model = User

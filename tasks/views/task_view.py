@@ -68,3 +68,14 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
         }
 
         return Response(response, status=status.HTTP_200_OK)
+
+    def destroy(self, request, *args, **kwargs):
+        
+        instance = self.get_object()
+        self.perform_destroy(instance)        
+
+        response = {
+            'success': True
+        }
+
+        return Response(response, status=status.HTTP_204_NO_CONTENT)
