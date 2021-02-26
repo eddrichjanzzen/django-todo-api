@@ -62,6 +62,7 @@ class UserMeDetail(generics.RetrieveUpdateDestroyAPIView):
     def destroy(self, request, *args, **kwargs):
         
         instance = self.get_object()
+        cloudinary.uploader.destroy(instance.cloudinary_public_id(), invalidate=True)
         self.perform_destroy(instance)        
 
         response = {
@@ -133,7 +134,6 @@ class UserUploadDeleteAvatar(generics.GenericAPIView):
         try:
 
             instance = self.get_object()
-            print(instance.cloudinary_public_id())
             cloudinary.uploader.destroy(instance.cloudinary_public_id(), invalidate=True)
 
             serializer = self.get_serializer(instance, data={
