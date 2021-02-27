@@ -52,9 +52,11 @@ class UserMeDetail(generics.RetrieveUpdateDestroyAPIView):
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)        
 
+        user_data = self.get_serializer(instance)
+
         response = {
             'success': True,
-            'data': serializer.data
+            'data': user_data.data
         }
 
         return Response(response, status=status.HTTP_200_OK)
