@@ -37,7 +37,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = [
-    'app-drf-todo-api.herokuapp.com'
+    '*'
 ]
 
 
