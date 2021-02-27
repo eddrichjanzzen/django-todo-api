@@ -15,6 +15,8 @@ from datetime import timedelta
 from decouple import config
 import cloudinary
 import django_heroku
+import os
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,6 +125,11 @@ DATABASES = {
         'PORT': config('PORT'),
     }  
 }
+
+# dj-database-url settings
+# Update database configuration with $DATABASE_URL.
+db_from_env = dj_database_url.config()
+DATABASES['default'].update(db_from_env)
 
 
 SIMPLE_JWT = {
