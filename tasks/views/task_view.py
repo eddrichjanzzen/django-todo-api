@@ -10,15 +10,21 @@ class TaskList(generics.ListCreateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     
     def get_queryset(self):
-
+        
         title = self.request.query_params.get('title', None)
+        completed = self.request.query_params.get('completed', None)
+
         tasks = Task.objects.filter(owner=self.request.user)
 
         # filter by title
         if title is not None: 
             tasks = tasks.filter(title__icontains=title)
+        
+        if completed is not None:
+            tasks = tasks.filter(completed=completed)
 
         return tasks
+
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
