@@ -48,7 +48,7 @@ class UserMeDetail(generics.RetrieveUpdateDestroyAPIView):
     def update(self, request, *args, **kwargs):
         
         instance = self.get_object()
-        serializer = self.get_serializer(instance, data=request.data)
+        serializer = user_serializer.UserUpdateSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)        
 
