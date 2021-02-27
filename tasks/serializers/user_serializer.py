@@ -64,7 +64,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
 
     class Meta: 
         model = User
-        fields = ['id', 'email', 'display_name', 'tokens', 'password', 'created_date', 'updated_date']
+        fields = ['id', 'email', 'display_name', 'created_date', 'updated_date', 'tokens', 'password']
         extra_kwargs = {
             'password': {
                 'write_only': True
