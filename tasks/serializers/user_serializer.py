@@ -59,10 +59,12 @@ class UserLoginSerializer(serializers.ModelSerializer):
     password = serializers.CharField(max_length=128, write_only=True)
     display_name = serializers.CharField(read_only=True)
     tokens = serializers.DictField(read_only=True)
-    
+    created_date = serializers.DateTimeField(read_only=True)
+    updated_date = serializers.DateTimeField(read_only=True)
+
     class Meta: 
         model = User
-        fields = ['id', 'email', 'display_name', 'tokens', 'password']
+        fields = ['id', 'email', 'display_name', 'tokens', 'password', 'created_date', 'updated_date']
         extra_kwargs = {
             'password': {
                 'write_only': True
@@ -87,5 +89,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'id': user.id,
             'email': user.email,
             'display_name': user.display_name,
-            'tokens': user.tokens()
+            'tokens': user.tokens(),
+            'created_date': user.created_date,
+            'updated_date': user.updated_date
         }
