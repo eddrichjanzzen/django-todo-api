@@ -62,9 +62,11 @@ class UserMeDetail(generics.RetrieveUpdateDestroyAPIView):
     def destroy(self, request, *args, **kwargs):
         
         instance = self.get_object()
-        cloudinary.uploader.destroy(instance.cloudinary_public_id(), invalidate=True)
-        self.perform_destroy(instance)        
 
+        if instance:
+            cloudinary.uploader.destroy(instance.cloudinary_public_id(), invalidate=True)
+            self.perform_destroy(instance)        
+        
         response = {
             'success': True
         }
