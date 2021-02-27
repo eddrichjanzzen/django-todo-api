@@ -89,7 +89,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             'id': user.id,
             'email': user.email,
             'display_name': user.display_name,
-            'tokens': user.tokens(),
             'created_date': user.created_date,
-            'updated_date': user.updated_date
+            'updated_date': user.updated_date,
+            'tokens': user.tokens(),
         }

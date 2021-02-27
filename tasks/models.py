@@ -91,8 +91,8 @@ class User(AbstractUser):
         refresh = RefreshToken.for_user(self)
 
         return {
-            'refresh': str(refresh),
-            'access': str(refresh.access_token)
+            'access': str(refresh.access_token),
+            'refresh': str(refresh)
         }
 
     def cloudinary_public_id(self):
