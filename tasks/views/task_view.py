@@ -14,7 +14,7 @@ class TaskList(generics.ListCreateAPIView):
         title = self.request.query_params.get('title', None)
         completed = self.request.query_params.get('completed', None)
 
-        tasks = Task.objects.filter(owner=self.request.user)
+        tasks = Task.objects.filter(owner=self.request.user).order_by('-created_date')
 
         # filter by title
         if title is not None: 
