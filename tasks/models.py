@@ -11,7 +11,7 @@ from cloudinary.models import CloudinaryField
 class Task(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.TextField()
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
     deadline = models.DateTimeField(null=True, blank=True)
     created_date = models.DateTimeField(auto_now_add=True)
