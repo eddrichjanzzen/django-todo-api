@@ -1,4 +1,5 @@
 from tasks.models import Task
+from tasks.pagination import CustomPagination
 from rest_framework import generics, permissions, status
 from tasks.serializers import task_serializer
 from rest_framework.response import Response
@@ -8,6 +9,7 @@ class TaskList(generics.ListCreateAPIView):
 
     serializer_class = task_serializer.TaskSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = CustomPagination
     
     def get_queryset(self):
         
