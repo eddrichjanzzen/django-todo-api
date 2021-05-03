@@ -13,7 +13,7 @@ class Task(models.Model):
     title = models.TextField()
     description = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
-    deadline = models.DateTimeField(null=True, blank=True)
+    deadline = models.DateTimeField(blank=True, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks', on_delete=models.CASCADE)
