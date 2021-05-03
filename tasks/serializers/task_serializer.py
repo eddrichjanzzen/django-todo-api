@@ -12,7 +12,7 @@ class TaskDetailSerializer(serializers.ModelSerializer):
 
     title = serializers.CharField(required=False)
     description = serializers.CharField(required=False, allow_blank=True)
-    deadline = serializers.CharField(required=False, allow_blank=True)
+    deadline = serializers.DateField(format=None, input_formats=None, required=False)
 
     class Meta:
         model = Task

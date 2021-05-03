@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from rest_framework_simplejwt.tokens import RefreshToken
 from cloudinary.models import CloudinaryField
-
+from datetime import datetime
 # Create your models here.
 
 class Task(models.Model):
@@ -13,7 +13,7 @@ class Task(models.Model):
     title = models.TextField()
     description = models.TextField(blank=True, null=True)
     completed = models.BooleanField(default=False)
-    deadline = models.DateTimeField(blank=True, null=True)
+    deadline = models.DateTimeField(blank=True, auto_now_add=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='tasks', on_delete=models.CASCADE)
