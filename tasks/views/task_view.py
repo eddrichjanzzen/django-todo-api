@@ -86,4 +86,4 @@ class TaskDetail(generics.RetrieveUpdateDestroyAPIView):
             'success': True
         }
 
-        return Response(response, status=status.HTTP_204_NO_CONTENT)
+        return Response(response, status=status.HTTP_200_OK)
